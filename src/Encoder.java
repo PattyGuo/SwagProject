@@ -38,7 +38,7 @@ public class Encoder {
 		{
 			encoded+= lmao[i];
 		}
-		write.print(encoded);
+		write.println(encoded);
 		write.close();
 	}
 	
@@ -53,9 +53,9 @@ public class Encoder {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		while(scan.hasNext())
+		while(scan.hasNextLine())
 		{
-			String lol = scan.next();
+			String lol = scan.nextLine();
 			char[] lmao = lol.toCharArray();
 			for(int i = 0; i<lmao.length; i++)
 			{
