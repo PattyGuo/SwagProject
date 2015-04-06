@@ -49,6 +49,11 @@ public class FrontEnd {
 						JOptionPane.showMessageDialog(myFrame, "This username already exists!", "ERROR", JOptionPane.OK_OPTION);
 						error = true;
 					}
+					if (((String)userList.getSelectedItem()).equals("users"))
+					{
+						JOptionPane.showMessageDialog(myFrame, "You can't name yourself as 'users'!", "ERROR", JOptionPane.OK_OPTION);
+						error = true;
+					}
 				}
 				if (error == false)
 				{
@@ -69,7 +74,14 @@ public class FrontEnd {
 			public void actionPerformed(ActionEvent e) {
 				if (userList.getItemCount() != 0)
 				{
-					b.addMessage((String)(userList.getSelectedItem()), messagePanel.getText());
+					if (((String)userList.getSelectedItem()).equals(""))
+					{
+						JOptionPane.showMessageDialog(myFrame, "You can't have a blank username!", "ERROR", JOptionPane.OK_OPTION);
+					}
+					else
+					{
+						b.addMessage((String)(userList.getSelectedItem()), messagePanel.getText());
+					}
 				}
 				else
 				{
@@ -97,9 +109,6 @@ public class FrontEnd {
 		verticalBox.add(newUserBox);
 		verticalBox.add(existingUserBox);
 		verticalBox.add(textBox);
-		
-		
-		
 		
 		myFrame.add(verticalBox);
 		myFrame.pack();
