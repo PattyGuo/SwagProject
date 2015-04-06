@@ -27,7 +27,10 @@ public class BackEnd {
 				contains = true;
 			}
 		if (contains == false)
+		{
 			users.add(username);
+			enc.write(msg);
+		}
 			
 	}
 	
