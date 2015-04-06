@@ -39,6 +39,7 @@ public class Encoder {
 			encoded+= lmao[i];
 		}
 		write.print(encoded);
+		write.close();
 	}
 	
 	public List<String> read()
