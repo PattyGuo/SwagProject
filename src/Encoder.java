@@ -15,7 +15,30 @@ public class Encoder {
 	
 	public Encoder(String filename)
 	{
+		ArrayList<String> oldfile = new ArrayList<String>();
+		Scanner scan = null;
+		try {
+			scan = new Scanner(file);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		while(scan.hasNextLine())
+		{
+			oldfile.add(scan.nextLine());
+		}
 		file = new File(filename);	
+		PrintWriter write = null;
+		try {
+			write = new PrintWriter(file);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		for(String s: oldfile)
+		{
+			write.println(s);
+		}
 		
 	}
 	
