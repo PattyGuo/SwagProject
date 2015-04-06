@@ -9,6 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.JTextPane;
 
 
 public class FrontEnd {
@@ -16,8 +17,8 @@ public class FrontEnd {
 	public FrontEnd()
 	{
 		JFrame myFrame = new JFrame("SwagProject");
-		JComboBox userList = new JComboBox();
-		JPanel myPanel = new JPanel();
+		JComboBox <String> userList = new JComboBox<String>();
+		JTextPane myPanel = new JTextPane();
 		JTextField userPanel = new JTextField();
 		JTextField messagePanel = new JTextField();
 		Box verticalBox = Box.createVerticalBox();
@@ -26,6 +27,7 @@ public class FrontEnd {
 		Box textBox = Box.createHorizontalBox();
 		JButton newButton = new JButton("Add User");
 		JButton messageButton = new JButton("Add Message");
+		JButton readMessageButton = new JButton("See all messages");
 		JLabel newLabel = new JLabel("New User:");
 		JLabel existingLabel = new JLabel("Existing Users:");
 		BackEnd b = new BackEnd();
@@ -61,6 +63,37 @@ public class FrontEnd {
 		
 		existingUserBox.add(userList);
 		
+		messageButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (userList.getItemCount() != 0)
+				{
+					b.addMessage((String)(userList.getSelectedItem()), messagePanel.getText());
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(myFrame, "You haven't selected a user!", "ERROR", JOptionPane.OK_OPTION);
+				}
+			}});
+		
+		readMessageButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String temp = "";
+				for (String x : b.getMessages((String)userList.getSelectedItem()))
+				{
+					temp += x + "\n";
+				}
+				myPanel.setText(temp);
+			}});
+		
+		textBox.add(messageButton);
+		textBox.add(messagePanel);
+		textBox.add(myPanel);
+		textBox.add(readMessageButton);		
+		
 		verticalBox.add(newUserBox);
 		verticalBox.add(existingUserBox);
 		verticalBox.add(textBox);
@@ -75,4 +108,3 @@ public class FrontEnd {
 		
 	}
 }
-
