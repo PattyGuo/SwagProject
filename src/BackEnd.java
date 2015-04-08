@@ -1,3 +1,5 @@
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +31,7 @@ public class BackEnd {
 		if (contains == false)
 		{
 			users.add(username);
+			this.save();
 			enc.write(msg);
 		}
 			
@@ -37,6 +40,21 @@ public class BackEnd {
 	public List<String> getUsers()
 	{
 		return users;
+	}
+	
+	public void save()
+	{
+		
+		try {
+			PrintWriter pw = new PrintWriter("users.txt");
+			for (int i = 0; i < users.size(); i++)
+				pw.write(users.get(i) + "\n");
+				pw.flush();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 	
 	
