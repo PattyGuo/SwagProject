@@ -1,3 +1,4 @@
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -16,12 +17,13 @@ public class FrontEnd {
 
 	public FrontEnd()
 	{
-		JFrame myFrame = new JFrame("SwagProject");
-		JComboBox <String> userList = new JComboBox<String>();
-		JTextPane myPanel = new JTextPane();
-		JTextField userPanel = new JTextField();
-		JTextField messagePanel = new JTextField();
+		final JFrame myFrame = new JFrame("SwagProject");
+		final JComboBox <String> userList = new JComboBox<String>();
+		final JTextPane myPanel = new JTextPane();
+		final JTextField userPanel = new JTextField();
+		final JTextField messagePanel = new JTextField();
 		Box verticalBox = Box.createVerticalBox();
+		Box labelBox = Box.createHorizontalBox();
 		Box newUserBox = Box.createHorizontalBox();
 		Box existingUserBox = Box.createHorizontalBox();
 		Box textBox = Box.createHorizontalBox();
@@ -30,7 +32,13 @@ public class FrontEnd {
 		JButton readMessageButton = new JButton("See all messages");
 		JLabel newLabel = new JLabel("New User:");
 		JLabel existingLabel = new JLabel("Existing Users:");
-		BackEnd b = new BackEnd();
+		
+		myFrame.setMinimumSize(new Dimension(500, 300));
+		
+		labelBox.add(Box.createHorizontalStrut(100));
+		labelBox.add(new JLabel("#SWAGPROJECT"));
+		labelBox.add(Box.createHorizontalStrut(100));
+		final BackEnd b = new BackEnd();
 		
 		for (String x: b.getUsers())
 		{
@@ -39,7 +47,6 @@ public class FrontEnd {
 		
 		newButton.addActionListener(new ActionListener(){
 
-			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				boolean error = false;
 				for (int i = 0; i < userList.getItemCount(); i++)
@@ -70,7 +77,6 @@ public class FrontEnd {
 		
 		messageButton.addActionListener(new ActionListener() {
 
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (userList.getItemCount() != 0)
 				{
@@ -91,7 +97,6 @@ public class FrontEnd {
 		
 		readMessageButton.addActionListener(new ActionListener() {
 
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				String temp = "";
 				for (String x : b.getMessages((String)userList.getSelectedItem()))
@@ -106,6 +111,7 @@ public class FrontEnd {
 		textBox.add(myPanel);
 		textBox.add(readMessageButton);		
 		
+		verticalBox.add(labelBox);
 		verticalBox.add(newUserBox);
 		verticalBox.add(existingUserBox);
 		verticalBox.add(textBox);
