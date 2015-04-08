@@ -24,7 +24,21 @@ public class Encoder {
 	
 	public void write(String plaintext)
 	{
-	
+		 ArrayList<String> oldfile = new ArrayList<String>();
+			Scanner scan = null;
+	   		try {
+	   			scan = new Scanner(new File(fileName));
+	   			
+	   			while (scan.hasNextLine())
+	              {
+	                      oldfile.add(scan.nextLine());
+	              }
+
+	   		} catch (FileNotFoundException e) {
+	   			// TODO Auto-generated catch block
+	   			
+	   		}
+	              
 
 		PrintWriter write = null;
 		try {
@@ -43,7 +57,10 @@ public class Encoder {
 		{
 			encoded+= lmao[i];
 		}
-	
+		for(String s: oldfile)
+		{
+			write.println(s);
+		}
 		write.println(encoded);
 		write.close();
 	}
