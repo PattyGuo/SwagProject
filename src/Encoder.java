@@ -22,6 +22,7 @@ public class Encoder {
 	
 	public void write(String plaintext)
 	{
+		
 		PrintWriter write = null;
 		try {
 			write = new PrintWriter(file);
