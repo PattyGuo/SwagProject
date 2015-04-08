@@ -1,7 +1,9 @@
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 
 public class BackEnd {
@@ -11,6 +13,7 @@ public class BackEnd {
 	public BackEnd()
 	{
 		users = new ArrayList<String>();
+		this.save();
 	}
 	public List<String> getMessages(String username)
 	{
@@ -57,7 +60,27 @@ public class BackEnd {
 
 	}
 	
-	
+	public void load()
+	{
+		
+		try 
+		{
+			String s;
+			Scanner scan = new Scanner(new File("users.txt"));
+			while (scan.hasNextLine())
+			{
+				s = scan.nextLine();
+				
+				users.add(s);
+				}
+				
+			}
+		
+		catch (FileNotFoundException e) {
+			System.out.println("File invalid");
+		}
+		
+	}
 	
 	
 	
