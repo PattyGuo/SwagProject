@@ -22,7 +22,6 @@ public class Encoder {
 	
 	public void write(String plaintext)
 	{
-		
 		PrintWriter write = null;
 		try {
 			write = new PrintWriter(file);
@@ -62,7 +61,7 @@ public class Encoder {
 			for(int i = 0; i<lmao.length; i++)
 			{
 				lmao[i] = (char) ((int)(lmao[i])-1);
-			}
+			
 			String encoded = "";
 			for(int i = 0; i<lmao.length;i++)
 			{
