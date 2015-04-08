@@ -18,6 +18,7 @@ public class BackEnd {
 	public List<String> getMessages(String username)
 	{
 		Encoder enc = new Encoder(username + ".txt");
+
 		return enc.read();
 	}
 	
@@ -25,6 +26,7 @@ public class BackEnd {
 	{
 		boolean contains = false;
 		Encoder enc = new Encoder(username + ".txt");
+
 		for (int i = 0; i < users.size(); i++)
 			if (username.equals(users.get(i)))
 			{
