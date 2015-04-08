@@ -11,20 +11,24 @@ import java.util.Scanner;
 
 public class Encoder {
 	
-	File file; 
+
+	String fileName;
 	
 	public Encoder(String filename)
 	{
+		fileName = filename;
+	
 
-		file = new File(filename);	
-		
 	}
+	
 	
 	public void write(String plaintext)
 	{
+	
+
 		PrintWriter write = null;
 		try {
-			write = new PrintWriter(file);
+			write = new PrintWriter(new File(fileName));
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -39,6 +43,7 @@ public class Encoder {
 		{
 			encoded+= lmao[i];
 		}
+	
 		write.println(encoded);
 		write.close();
 	}
@@ -49,7 +54,7 @@ public class Encoder {
 		
 		Scanner scan = null;
 		try {
-			scan = new Scanner(file);
+			scan = new Scanner(new File(fileName));
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
