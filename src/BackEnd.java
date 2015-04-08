@@ -13,7 +13,7 @@ public class BackEnd {
 	public BackEnd()
 	{
 		users = new ArrayList<String>();
-		this.save();
+		this.load();
 	}
 	public List<String> getMessages(String username)
 	{
